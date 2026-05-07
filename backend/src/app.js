@@ -3,6 +3,8 @@ const cors = require('cors');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 const authRoutes = require('./routes/authRoutes');
 const scraperRoutes = require('./routes/scraperRoutes');
+const storyRoutes = require('./routes/storyRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -20,6 +22,8 @@ app.get('/api/health', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/scrape', scraperRoutes);
+app.use('/api/stories', storyRoutes);
+app.use('/api/users', userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
