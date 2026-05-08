@@ -8,10 +8,20 @@ const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
+const normalizeOrigin = (o) => o.trim().replace(/\/+$/, '');
+const allowedOrigins = (process.env.CLIENT_ORIGIN || '')
+  .split(',')
+  .map(normalizeOrigin)
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN || '*',
-    credentials: true,
+    origin: (origin, cb) => {
+      if (!origin) return cb(null, true);
+      if (allowedOrigins.length === 0) return cb(null, true);
+      if (allowedOrigins.includes(normalizeOrigin(origin))) return cb(null, true);
+      return cb(new Error(`Origin ${origin} not allowed by CORS`));
+    },
   })
 );
 app.use(express.json());

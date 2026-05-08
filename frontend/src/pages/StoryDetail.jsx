@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import api from '../api/axios';
 import BookmarkButton from '../components/BookmarkButton';
+import Spinner from '../components/Spinner';
 
 export default function StoryDetail() {
   const { id } = useParams();
@@ -40,9 +41,7 @@ export default function StoryDetail() {
         ← Back to stories
       </Link>
 
-      {loading && (
-        <div className="text-center py-10 text-gray-500">Loading story…</div>
-      )}
+      {loading && <Spinner label="Loading story…" />}
 
       {error && !loading && (
         <div className="p-4 rounded bg-red-50 border border-red-200 text-red-700 text-sm">
