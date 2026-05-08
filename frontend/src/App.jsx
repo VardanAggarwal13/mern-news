@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -18,7 +19,7 @@ export default function App() {
         <Navbar />
         <main className="max-w-3xl mx-auto py-6 px-4">
           <Routes>
-            <Route path="/" element={<Placeholder name="Home" />} />
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/bookmarks" element={<Placeholder name="Bookmarks" />} />
