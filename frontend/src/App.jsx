@@ -1,19 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import StoryDetail from './pages/StoryDetail';
 import Bookmarks from './pages/Bookmarks';
-import ProtectedRoute from './components/ProtectedRoute';
-
-const Placeholder = ({ name }) => (
-  <div className="p-6 text-center text-gray-600">
-    <h2 className="text-2xl font-semibold">{name}</h2>
-    <p className="mt-2">Coming soon.</p>
-  </div>
-);
+import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -25,6 +19,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/stories/:id" element={<StoryDetail />} />
             <Route
               path="/bookmarks"
               element={
@@ -33,8 +28,7 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="/stories/:id" element={<StoryDetail />} />
-            <Route path="*" element={<Placeholder name="404" />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
       </div>

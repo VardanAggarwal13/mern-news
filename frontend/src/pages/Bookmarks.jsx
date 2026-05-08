@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
 import StoryCard from '../components/StoryCard';
+import Spinner from '../components/Spinner';
 import { useAuth } from '../context/AuthContext';
 
 export default function Bookmarks() {
@@ -49,11 +50,7 @@ export default function Bookmarks() {
         )}
       </div>
 
-      {loading && (
-        <div className="text-center py-10 text-gray-500">
-          Loading bookmarks…
-        </div>
-      )}
+      {loading && <Spinner label="Loading bookmarks…" />}
 
       {error && !loading && (
         <div className="p-4 rounded bg-red-50 border border-red-200 text-red-700 text-sm">
