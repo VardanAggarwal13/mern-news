@@ -4,6 +4,9 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import StoryDetail from './pages/StoryDetail';
+import Bookmarks from './pages/Bookmarks';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const Placeholder = ({ name }) => (
   <div className="p-6 text-center text-gray-600">
@@ -22,11 +25,15 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/bookmarks" element={<Placeholder name="Bookmarks" />} />
             <Route
-              path="/stories/:id"
-              element={<Placeholder name="Story Detail" />}
+              path="/bookmarks"
+              element={
+                <ProtectedRoute>
+                  <Bookmarks />
+                </ProtectedRoute>
+              }
             />
+            <Route path="/stories/:id" element={<StoryDetail />} />
             <Route path="*" element={<Placeholder name="404" />} />
           </Routes>
         </main>
